@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bean & Brew — Coffee Shop</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0f1724; /* dark navy */
+      --card:#0b1320;
+      --muted:#9aa4b2;
+      --accent:#d97706; /* warm amber */
+      --glass: rgba(255,255,255,0.04);
+      --radius:14px;
+      --max-width:1100px;
+    }
+    *{box-sizing: border-box}
+    html,body{height:100%;margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,'Helvetica Neue',Arial;color:#e6eef6;background:linear-gradient(180deg,#071025 0%, #081427 60%);-webkit-font-smoothing:antialiased}
+    .wrap{max-width:var(--max-width);margin:32px auto;padding:24px}
+    header{display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .brand{display:flex;gap:12px;align-items:center}
+    .logo{width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,#f97316,#ffb86b);display:flex;align-items:center;justify-content:center;color:#1b1b1b;font-weight:700;font-size:20px;box-shadow:0 8px 20px rgba(0,0,0,0.35)}
+    nav{display:flex;gap:18px;align-items:center}
+    nav a{color:var(--muted);text-decoration:none;font-weight:600}
+    .btn{background:var(--accent);color:#081127;padding:10px 14px;border-radius:10px;font-weight:700;border:none;cursor:pointer}
+
+    /* hero */
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:28px;margin-top:22px;align-items:center}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:28px;border-radius:var(--radius);box-shadow:0 6px 30px rgba(2,6,23,0.6);}
+    .hero h1{font-size:36px;margin:0 0 8px}
+    .hero p{color:var(--muted);margin:0 0 18px}
+    .features{display:flex;gap:12px}
+    .feature{display:flex;gap:10px;align-items:center;padding:10px 12px;background:var(--glass);border-radius:12px}
+    .feature svg{width:22px;height:22px}
+
+    /* menu */
+    .section{margin-top:28px}
+    .section h2{margin:0 0 12px}
+    .menu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px}
+    .menu-item{display:flex;gap:12px;align-items:center;padding:12px;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.02));border-radius:12px}
+    .menu-item img{width:84px;height:84px;border-radius:10px;object-fit:cover}
+    .price{font-weight:700;color:var(--accent)}
+    .muted{color:var(--muted);font-size:13px}
+
+    /* gallery */
+    .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+    .gallery img{width:100%;height:140px;object-fit:cover;border-radius:10px}
+
+    /* contact */
+    form{display:grid;gap:10px}
+    input,textarea{padding:12px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit}
+    .footer{display:flex;justify-content:space-between;align-items:center;margin-top:20px;color:var(--muted);font-size:14px}
+
+    /* responsive */
+    @media (max-width:900px){
+      .hero{grid-template-columns:1fr}
+      .gallery{grid-template-columns:repeat(2,1fr)}
+      header{flex-direction:column;align-items:flex-start}
+      nav{order:3;width:100%;justify-content:space-between}
+    }
+
+    @media (max-width:520px){
+      .menu-grid{grid-template-columns:1fr}
+      .gallery img{height:110px}
+    }
+
+    /* small utilities */
+    .tag{background:rgba(255,255,255,0.03);padding:6px 8px;border-radius:8px;font-weight:600}
+    .price-row{display:flex;justify-content:space-between;align-items:center}
+    .center{display:flex;align-items:center;justify-content:center}
+    .nav-toggle{display:none}
+    .mobile-only{display:none}
+    @media (max-width:520px){.nav-toggle{display:block}.mobile-only{display:block}}
+
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <div class="logo">BB</div>
+        <div>
+          <div style="font-weight:700;font-size:18px">Bean & Brew</div>
+          <div class="muted" style="font-size:12px">Craft coffee • Local roasts • Cozy vibes</div>
+        </div>
+      </div>
+
+      <nav>
+        <a href="#menu">Menu</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#contact">Contact</a>
+        <button class="btn" id="orderBtn">Order Online</button>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="card">
+          <h1>Wake up with the perfect cup.</h1>
+          <p class="muted">Bean & Brew blends small-batch roasts with local ingredients to bring you coffee that feels like home.</p>
+
+          <div class="features">
+            <div class="feature"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 3v2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 8h14" stroke=
+                
+                "currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 21h10a2 2 0 0 0 2-2V8H5v11a2 2 0 0 0 2 2z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><div><div style="font-weight:700">Fresh Roasts</div><div class="muted">Daily small-batch</div></div></div>
+
+            <div class="feature"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 7h18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 7v10a6 6 0 0 0 12 0V7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><div><div style="font-weight:700">Cozy Space</div><div class="muted">Work or chill</div></div></div>
+
+            <div class="feature"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2v6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M19 6.5A7 7 0 0 1 12 21a7 7 0 0 1-7-14.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><div><div style="font-weight:700">Local Ingredients</div><div class="muted">Support local farms</div></div></div>
+          </div>
+
+          <div style="margin-top:18px;display:flex;gap:10px;align-items:center">
+            <button class="btn" id="viewMenu">View Menu</button>
+            <button class="tag" id="visit">Visit Us</button>
+          </div>
+
+        </div>
+
+        <aside>
+          <div class="card">
+            <div style="display:flex;gap:12px;align-items:center;margin-bottom:12px">
+              <div style="width:68px;height:68px;border-radius:10px;overflow:hidden;background:url('https://source.unsplash.com/collection/895539/200x200') center/cover"></div>
+              <div>
+                <div style="font-weight:700">Today’s Special</div>
+                <div class="muted">Caramel Cinnamon Latte</div>
+              </div>
+            </div>
+
+            <div style="margin-top:8px">
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+                <div class="muted">Opening Hours</div>
+                <div style="font-weight:700">7:00 AM — 9:00 PM</div>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center">
+                <div class="muted">Location</div>
+                <div class="muted">Lane 3, Coffee Street</div>
+              </div>
+            </div>
+
+            <div style="margin-top:14px" class="center">
+              <button class="btn" style="width:100%" id="reserve">Reserve a table</button>
+            </div>
+          </div>
+        </aside>
+      </section>
+
+      <section id="menu" class="section">
+        <h2>Our Menu</h2>
+        <p class="muted">Handcrafted drinks and light bites. Click a category to filter.</p>
+        <div style="margin:12px 0;display:flex;gap:10px;flex-wrap:wrap">
+          <button class="tag" data-filter="all">All</button>
+          <button class="tag" data-filter="coffee">Coffee</button>
+          <button class="tag" data-filter="cold">Cold Brew</button>
+          <button class="tag" data-filter="snack">Snacks</button>
+        </div>
+
+        <div class="menu-grid" id="menuGrid">
+          <!-- menu items will be injected by JS -->
+        </div>
+      </section>
+
+      <section id="gallery" class="section">
+        <h2>Gallery</h2>
+        <div class="gallery" id="galleryGrid">
+          <img src="https://source.unsplash.com/collection/190727/800x600?sig=1" alt="gallery">
+          <img src="https://source.unsplash.com/collection/190727/800x600?sig=2" alt="gallery">
+          <img src="https://source.unsplash.com/collection/190727/800x600?sig=3" alt="gallery">
+          <img src="https://source.unsplash.com/collection/190727/800x600?sig=4" alt="gallery">
+          <img src="https://source.unsplash.com/collection/190727/800x600?sig=5" alt="gallery">
+          <img src="https://source.unsplash.com/collection/190727/800x600?sig=6" alt="gallery">
+        </div>
+      </section>
+
+      <section id="contact" class="section">
+        <h2>Contact & Reserve</h2>
+        <div style="display:grid;grid-template-columns:1fr 320px;gap:18px;margin-top:10px">
+          <div class="card">
+            <form id="contactForm">
+              <input type="text" id="name" placeholder="Your name" required>
+              <input type="email" id="email" placeholder="Email" required>
+              <input type="tel" id="phone" placeholder="Phone (optional)">
+              <textarea id="message" rows="5" placeholder="Message or reservation details"></textarea>
+              <div style="display:flex;gap:8px;align-items:center">
+                <button type="submit" class="btn">Send</button>
+                <div class="muted" style="font-size:13px">We'll reply within 24 hours</div>
+              </div>
+            </form>
+          </div>
+
+          <div class="card">
+            <div style="font-weight:700;margin-bottom:8px">Find Us</div>
+            <div class="muted" style="margin-bottom:12px">123 Coffee Street, Your City</div>
+            <div style="width:100%;height:180px;background:linear-gradient(180deg,#0b1724,#071022);border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--muted)">Map placeholder</div>
+            <div style="margin-top:12px" class="muted">Phone: +91 98765 43210</div>
+            <div class="muted">Email: hello@beanandbrew.example</div>
+          </div>
+        </div>
+      </section>
+
+      <footer style="margin-top:24px">
+        <div class="footer">
+          <div>© <span id="year"></span> Bean & Brew — All rights reserved</div>
+          <div class="muted">Made with ☕️ • Follow us on social</div>
+        </div>
+      </footer>
+
+    </main>
+  </div>
+
+  <script>
+    // data for menu
+    const MENU = [
+      {id:1,name:'Espresso',category:'coffee',desc:'Rich single shot',price:80,img:'https://source.unsplash.com/400x400/?espresso'},
+      {id:2,name:'Americano',category:'coffee',desc:'Hot water & espresso',price:90,img:'https://source.unsplash.com/400x400/?americano'},
+      {id:3,name:'Latte',category:'coffee',desc:'Velvety milk and espresso',price:120,img:'https://source.unsplash.com/400x400/?latte'},
+      {id:4,name:'Cappuccino',category:'coffee',desc:'Creamy milk foam',price:120,img:'https://source.unsplash.com/400x400/?cappuccino'},
+      {id:5,name:'Iced Caramel',category:'cold',desc:'Cold brew with caramel',price:140,img:'https://source.unsplash.com/400x400/?iced-coffee'},
+      {id:6,name:'Nitro Cold Brew',category:'cold',desc:'Smooth & fizzy',price:160,img:'https://source.unsplash.com/400x400/?cold-brew'},
+      {id:7,name:'Blueberry Muffin',category:'snack',desc:'Fresh baked daily',price:70,img:'https://source.unsplash.com/400x400/?muffin'},
+      {id:8,name:'Avocado Toast',category:'snack',desc:'Sourdough & toppings',price:150,img:'https://source.unsplash.com/400x400/?avocado-toast'}
+    ];
+
+    const menuGrid = document.getElementById('menuGrid');
+    function renderMenu(items){
+      menuGrid.innerHTML = items.map(item=>`<div class="menu-item card" data-id="${item.id}">
+        <img src="${item.img}" alt="${item.name}">
+        <div style="flex:1">
+          <div style="display:flex;justify-content:space-between;align-items:start"><div style="font-weight:700">${item.name}</div><div class="price">₹${item.price}</div></div>
+          <div class="muted">${item.desc}</div>
+          <div style="margin-top:10px"><button class="tag addBtn" data-id="${item.id}">Add</button></div>
+        </div>
+      </div>`).join('');
+
+      // attach add handlers
+      document.querySelectorAll('.addBtn').forEach(btn=>btn.addEventListener('click',e=>{
+        const id = Number(e.currentTarget.dataset.id);
+        addToCart(id);
+      }));
+    }
+
+    // initial render
+    renderMenu(MENU);
+
+    // filter
+    document.querySelectorAll('[data-filter]').forEach(btn=>btn.addEventListener('click',e=>{
+      const f = e.currentTarget.dataset.filter;
+      if(f==='all') renderMenu(MENU); else renderMenu(MENU.filter(m=>m.category===f));
+    }));
+
+    // cart stored in localStorage
+    const CART_KEY = 'beanandbrew_cart_v1';
+    function getCart(){return JSON.parse(localStorage.getItem(CART_KEY) || '[]')}
+    function saveCart(c){localStorage.setItem(CART_KEY, JSON.stringify(c))}
+    function addToCart(id){
+      const item = MENU.find(m=>m.id===id); if(!item) return;
+      const cart = getCart();
+      const found = cart.find(c=>c.id===id);
+      if(found) found.qty++; else cart.push({id:item.id,name:item.name,price:item.price,qty:1});
+      saveCart(cart);
+      alert(item.name + ' added to cart');
+    }
+
+    // contact form
+    document.getElementById('contactForm').addEventListener('submit',e=>{
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      if(!name || !email){alert('Please fill name and email');return}
+      // simulate send
+      alert('Thanks ' + name + '! Your message has been received.');
+      e.target.reset();
+    });
+
+    // buttons
+    document.getElementById('viewMenu').addEventListener('click',()=>{location.hash='menu';document.getElementById('menu').scrollIntoView({behavior:'smooth'})});
+    document.getElementById('orderBtn').addEventListener('click',()=>{alert('Ordering is not enabled in this demo — but cart is saved locally.');});
+    document.getElementById('reserve').addEventListener('click',()=>{location.hash='contact';document.getElementById('name').focus();});
+
+    // year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // accessibility: simple keyboard focus for menu items
+    document.addEventListener('keydown',e=>{if(e.key==='?' && e.shiftKey){alert('Keyboard tips:\n- Press \"/\" to focus search (demo)\n- Use Tab to navigate links.')}});
+
+  </script>
+</body>
+</html>
